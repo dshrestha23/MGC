@@ -1,0 +1,8 @@
+# Ignore myenv folder
+myenv/
+
+# Ignore mgc_site
+mgc_site
+
+#Ignore data folder
+
