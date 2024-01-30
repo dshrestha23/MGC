@@ -5,5 +5,9 @@ myenv/
 mgc_site
 
 #Ignore data folder
-Data/ 
+Data/
 
+Inputs
+cnn_model/Train.ipynb
+
+model 
