@@ -8,3 +8,6 @@ mgc_site
 Data/
 
 Inputs
+cnn_model/Train.ipynb
+
+model
