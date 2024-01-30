@@ -1,6 +1,7 @@
 # Ignore myenv folder
 myenv/
 
+
 __pycache__
 migrations
 db.*
@@ -10,3 +11,6 @@ Data/
 
 Inputs
 cnn_model/Train.ipynb
+
+model
+
