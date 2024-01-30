@@ -1,0 +1,11 @@
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'css/navbar.css' %}">
+<div class="nav">
+    <div class="logo">MGC</div>
+    <ul class="nav-links">
+        <li><a href="{% url 'home' %}">Home</a></li>
+        <li><a href="{% url 'about' %}">About</a></li>
+        <li><a href="{% url 'model' %}">Model</a></li>
+    </ul>
+</div>

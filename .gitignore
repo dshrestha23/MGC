@@ -1,10 +1,12 @@
 # Ignore myenv folder
 myenv/
 
-# Ignore mgc_site
-mgc_site
+__pycache__
+migrations
+db.*
 
 #Ignore data folder
 Data/
 
 Inputs
+cnn_model/Train.ipynb
