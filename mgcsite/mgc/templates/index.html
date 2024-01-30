@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% block start %}
+<p>Home</p>
+<form id="audioForm" action="{% url 'home' %}" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="upload">
+        <input type="file" name="audio_file" id="audioFile" />
+    </div>
+    <button type="button" , onclick="checkGenre()">Check</button>
+</form>
+<audio controls id="audioPlayer" style="display:none;">
+    Your browser does not support the audio element.
+</audio>
+<div id="genreResult"></div>
+<!-- Include JavaScript to handle form submission and content update -->
+<script>
+    function audioPreview() {
+        let fileInput = document.getElementById('audioFile');
+        let audioPlayer = document.getElementById('audioPlayer');
+
+        let file = fileInput.files[0];
+        if (file) {
+            let objectURL = URL.createObjectURL(file);
+            audioPlayer.src = objectURL;
+            audioPlayer.style.display = 'block';
+            audioPlayer.removeAttribute('autoplay');
+        }
+    }
+    function checkGenre() {
+        event.preventDefault();
+        let form = document.getElementById("audioForm");
+        let formData = new FormData(form);
+
+        fetch(form.action, {
+            method: "POST",
+            body: formData
+        })
+            .then(response => response.json())
+            .then(data => {
+                form.style.display = "none";
+
+                audioPreview();
+
+                let genreResult = document.getElementById("genreResult");
+                genreResult.innerHTML = "Genre: " + data.genre_result;
+            })
+            .catch(error => {
+                console.error("Error:", error);
+            });
+    }
+</script>
+{% endblock %}

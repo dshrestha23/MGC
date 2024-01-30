@@ -1,0 +1,47 @@
+.nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background-color: #333;
+    /* Set your desired background color */
+}
+
+.logo {
+    font-size: 1.5rem;
+    color: #fff;
+    /* Set your desired text color */
+}
+
+.nav-links {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+.nav-links li {
+    margin-right: 1rem;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #fff;
+    /* Set your desired text color */
+}
+
+/* Hamburger Icon */
+.hamburger-icon {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.hamburger-icon div {
+    width: 25px;
+    height: 3px;
+    background-color: #fff;
+    /* Set your desired color */
+    margin: 5px 0;
+    transition: 0.4s;
+}
