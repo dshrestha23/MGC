@@ -1,52 +1,165 @@
-{% extends "base.html" %}
-{% block start %}
-<p>Home</p>
-<form id="audioForm" action="{% url 'home' %}" method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-    <div class="upload">
-        <input type="file" name="audio_file" id="audioFile" />
+{% extends "base.html" %} {% block start %}
+<div class="crypto-assistant-container">
+  <div class="crypto-assistant-content">
+    <p class="title">Music Genre Classification</p>
+    <form
+      id="audioForm"
+      action="{% url 'home' %}"
+      method="post"
+      enctype="multipart/form-data"
+    >
+      {% csrf_token %}
+      <div class="upload-container">
+        <div class="upload" id="dropArea">
+          <label for="audioFile">
+            <p class="title">Drop files here</p>
+          </label>
+          <input
+            type="file"
+            name="audio_file"
+            id="audioFile"
+            class="upload-input"
+            onchange="audioPreview(event)"
+          />
+        </div>
+        <div class="custom-buttons">
+          <button type="button" onclick="checkGenre()" class="check-button">
+            Check
+          </button>
+        </div>
+      </div>
+    </form>
+    <div class="custom-buttons">
+      <audio controls id="audioPlayer" style="display: none">
+        Your browser does not support the audio element.
+      </audio>
     </div>
-    <button type="button" , onclick="checkGenre()">Check</button>
-</form>
-<audio controls id="audioPlayer" style="display:none;">
-    Your browser does not support the audio element.
-</audio>
-<div id="genreResult"></div>
+    <p id="errorMessage" class="error-message" style="display: none">
+      Invalid file format. Please upload an mp3 or wav file.
+    </p>
+    <div id="genreResult" class="title"></div>
+    <div id="confidenceResult" class="title"></div>
+    <div id="loadingSpinner" class="loading-spinner" style="display: none">
+      <!-- Add your loading spinner HTML here -->
+      <div class="spinner"></div>
+      <p class="title">Predicting...</p>
+    </div>
+  </div>
+</div>
 <!-- Include JavaScript to handle form submission and content update -->
 <script>
-    function audioPreview() {
-        let fileInput = document.getElementById('audioFile');
-        let audioPlayer = document.getElementById('audioPlayer');
+  function audioPreview(event) {
+    let fileInput = event.target;
+    let errorMessage = document.getElementById("errorMessage");
+    let audioPlayer = document.getElementById("audioPlayer");
 
-        let file = fileInput.files[0];
-        if (file) {
-            let objectURL = URL.createObjectURL(file);
-            audioPlayer.src = objectURL;
-            audioPlayer.style.display = 'block';
-            audioPlayer.removeAttribute('autoplay');
+    let file = fileInput.files[0];
+    if (file) {
+      let validFormats = ["audio/mpeg", "audio/wav"];
+      if (!validFormats.includes(file.type)) {
+        errorMessage.style.display = "block";
+        audioPlayer.style.display = "none";
+        return;
+      }
+
+      let objectURL = URL.createObjectURL(file);
+      audioPlayer.src = objectURL;
+      audioPlayer.style.display = "block";
+      errorMessage.style.display = "none";
+
+      let fileName = file.name;
+      let dropArea = document.getElementById("dropArea");
+      let dropAreaText = dropArea.querySelector("p");
+      dropAreaText.textContent = fileName;
+    }
+  }
+
+  const dropArea = document.getElementById("dropArea");
+
+  ["dragenter", "dragover", "dragleave", "drop"].forEach((eventName) => {
+    dropArea.addEventListener(eventName, preventDefaults, false);
+  });
+
+  function preventDefaults(e) {
+    e.preventDefault();
+    e.stopPropagation();
+  }
+
+  ["dragenter", "dragover"].forEach((eventName) => {
+    dropArea.addEventListener(eventName, highlight, false);
+  });
+
+  ["dragleave", "drop"].forEach((eventName) => {
+    dropArea.addEventListener(eventName, unhighlight, false);
+  });
+
+  function highlight() {
+    dropArea.classList.add("dragover");
+  }
+
+  function unhighlight() {
+    dropArea.classList.remove("dragover");
+  }
+
+  dropArea.addEventListener("drop", handleDrop, false);
+
+  function handleDrop(e) {
+    let dt = e.dataTransfer;
+    let files = dt.files;
+
+    audioPreview({ target: { files: files } });
+  }
+
+  function checkGenre() {
+    event.preventDefault(); // Prevent form submission
+
+    let form = document.getElementById("audioForm");
+    let formData = new FormData(form);
+
+    // Hide the button
+    let checkButton = document.querySelector(".check-button");
+    checkButton.style.display = "none";
+
+    // Display loading spinner
+    let loadingSpinner = document.getElementById("loadingSpinner");
+    loadingSpinner.style.display = "block";
+
+    fetch(form.action, {
+      method: "POST",
+      body: formData,
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
         }
-    }
-    function checkGenre() {
-        event.preventDefault();
-        let form = document.getElementById("audioForm");
-        let formData = new FormData(form);
+        return response.json();
+      })
+      .then((data) => {
+        // Hide loading spinner
+        loadingSpinner.style.display = "none";
 
-        fetch(form.action, {
-            method: "POST",
-            body: formData
-        })
-            .then(response => response.json())
-            .then(data => {
-                form.style.display = "none";
+        form.style.display = "none";
 
-                audioPreview();
+        let genreResult = document.getElementById("genreResult");
+        genreResult.innerHTML = "Genre: " + data.genre_result;
 
-                let genreResult = document.getElementById("genreResult");
-                genreResult.innerHTML = "Genre: " + data.genre_result;
-            })
-            .catch(error => {
-                console.error("Error:", error);
-            });
-    }
+        let confidenceResult = document.getElementById("confidenceResult");
+        confidenceResult.innerHTML =
+          "Confidence: " + (data.confidence * 100).toFixed(2) + "%";
+      })
+      .catch((error) => {
+        console.error("Error:", err<div class="upload-container">
+        <div class="upload" id="dropArea">
+          <label for="audioFile">
+            <p class="title">Drop files here</p>
+          </label>
+          <input
+            type="fior);
+        // Display error message to the user
+        // (Optional: Implement this based on your UI requirements)
+        // Hide loading spinner
+        loadingSpinner.style.display = "none";
+      });
+  }
 </script>
 {% endblock %}

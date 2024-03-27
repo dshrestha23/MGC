@@ -1,47 +1,45 @@
+/* Navbar CSS */
+
+/* Reset default margin and padding */
 .nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem;
-    background-color: #333;
-    /* Set your desired background color */
+    background-color: #333; /* Background color for the navbar */
+    padding: 10px 20px; /* Padding around the navbar */
+    width: 100%; /* Make the navbar span the full width of the viewport */
+    position: fixed; /* Fix the navbar position */
+    top: 0; /* Position the navbar at the top of the viewport */
+    z-index: 1000; /* Ensure the navbar is above other content */
 }
 
+/* Logo */
 .logo {
-    font-size: 1.5rem;
-    color: #fff;
-    /* Set your desired text color */
+    color: #fff; /* Color of the logo text */
+    font-size: 24px; /* Font size of the logo */
+    font-weight: bold; /* Font weight of the logo */
 }
 
+/* Navigation links */
 .nav-links {
     list-style: none;
-    margin: 0;
-    padding: 0;
     display: flex;
 }
 
+/* Individual navigation items */
 .nav-links li {
-    margin-right: 1rem;
+    margin-right: 20px; /* Spacing between each navigation item */
 }
 
-.nav-links a {
-    text-decoration: none;
-    color: #fff;
-    /* Set your desired text color */
+/* Styling for navigation links */
+.nav-links li a {
+    text-decoration: none; /* Remove underline from links */
+    color: #fff; /* Color of the navigation links */
+    font-size: 18px; /* Font size of the navigation links */
+    transition: color 0.3s ease; /* Smooth color transition on hover */
 }
 
-/* Hamburger Icon */
-.hamburger-icon {
-    display: none;
-    flex-direction: column;
-    cursor: pointer;
-}
-
-.hamburger-icon div {
-    width: 25px;
-    height: 3px;
-    background-color: #fff;
-    /* Set your desired color */
-    margin: 5px 0;
-    transition: 0.4s;
+/* Styling for navigation links on hover */
+.nav-links li a:hover {
+    color: #00b3bb; /* Change color on hover */
 }
