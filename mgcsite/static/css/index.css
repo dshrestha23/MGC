@@ -1,0 +1,133 @@
+.upload-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.title {
+    font-size: 2rem;
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+    color: #fff; 
+}
+
+.upload {
+    border: 2px dashed #ccc;
+    border-radius: 50px;
+    padding: 120px;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.upload.dragover {
+    border-color: #007bff;
+}
+
+.upload p {
+    margin: 0;
+}
+
+.upload input[type="file"] {
+    display: none;
+}
+
+.upload label {
+    cursor: pointer;
+}
+
+.check-button {
+    margin-top: 20px; 
+    background-color: #007bff; 
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.check-button:hover {
+    background-color: #0056b3;
+}
+body, html {
+    height: 100%;
+    margin: 0;
+    background-image: url('../images/img1.jpg');
+    background-size: cover;
+    background-position: center;
+}
+.crypto-assistant-container {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-family: Arial, sans-serif;
+}
+
+.crypto-assistant-content {
+    width: 500px;
+    position: relative;
+}
+
+/* .crypto-assistant-title {
+    font-size: 2rem;
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+} */
+
+.crypto-assistant-subtitle {
+    font-size: 1.125rem;
+    color: #666;
+    margin-bottom: 2rem;
+}
+
+.custom-buttons {
+    display: flex;
+    justify-content: center;
+    /* position: absolute;
+    bottom: 100%; */
+}
+
+.custom-button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 1rem;
+    margin: 4px 2px;
+    cursor: pointer;
+    border: none;
+    border-radius: 4px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* #audioPlayer {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  } */
+  #audioPlayer {
+    width: 100%;
+    margin-top: 10px;
+  }
+  #errorMessage {
+    margin-top: 1rem;
+    color: red;
+  }
+  
+  .error-message {
+    display: none;
+  }
+/* .check-button {
+    background-color: #007BFF;
+} */
+
+.audio-preview-container {
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #f0f0f0;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }

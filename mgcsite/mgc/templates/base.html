@@ -1,17 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  {% load static %}
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'css/index.css' %}"
+    />
     <title>{{page}}</title>
-</head>
+  </head>
 
-<body>
-    {% include 'partials/navbar.html' %}
-
-    {% block start %}
-    {% endblock %}
-</body>
-
+  <body>
+    <!-- {% include 'partials/navbar.html' %} -->
+    {% block start %} {% endblock %}
+  </body>
 </html>
